@@ -16,8 +16,12 @@ sdm660-mainline kernel, using libcamera's software ISP and autofocus.
 - Userspace: `libcamera`/`libcamera-ipa`/`libcamera-tools` package version
   `99990.8.0-r3` (upstream 0.8.0 + autofocus patch series by Milan Zamazal),
   tuning YAML in `/etc/libcamera/ipa/softisp/`.
-- Verified 2026-11-21: all three sensors respond, `cam -l` lists three cameras,
-  main camera `Rotation = 270`, `Location = 1 (Back)`, front `Rotation = 90`.
+- Speaker companion: https://github.com/cherniy-exe/redmi-note7-nura-speaker
+  (both patch sets were tested together).
+- Verified 2026-11-21: the user confirmed that all three cameras and the
+  speaker work after reboot. Expected checks (from the upstream recipe):
+  `dmesg | grep 'chip id'` → `0x8d1`, `0xd855`, `0x5e80`; `cam -l` lists three
+  cameras; main `Rotation = 270`, `Location = 1 (Back)`, front `Rotation = 90`.
 
 ## What is inside
 
