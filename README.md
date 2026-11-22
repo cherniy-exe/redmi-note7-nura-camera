@@ -18,10 +18,14 @@ sdm660-mainline kernel, using libcamera's software ISP and autofocus.
   tuning YAML in `/etc/libcamera/ipa/softisp/`.
 - Speaker companion: https://github.com/cherniy-exe/redmi-note7-nura-speaker
   (both patch sets were tested together).
-- Verified 2026-11-21: the user confirmed that all three cameras and the
-  speaker work after reboot. Expected checks (from the upstream recipe):
-  `dmesg | grep 'chip id'` → `0x8d1`, `0xd855`, `0x5e80`; `cam -l` lists three
-  cameras; main `Rotation = 270`, `Location = 1 (Back)`, front `Rotation = 90`.
+- Verified 2026-11-21: after installing the patches, the kernel side is healthy —
+  `cam -l` lists all three cameras (`s5kgm1`, `ov13855`, `s5k5e8`), `/dev/media0`
+  and `/dev/video0..6` exist, and `qcom_camss`, `v4l2_cci`, `s5kgm1`, `ov13855`,
+  `s5k5e8`, `dw9719` are loaded. The known limitation at this point is the
+  Plasma Mobile camera application: `plasma-camera` crashes on open even though
+  the libcamera CLI works. Expected low-level checks (from the upstream recipe):
+  `dmesg | grep 'chip id'` → `0x8d1`, `0xd855`, `0x5e80`; main
+  `Rotation = 270`, `Location = 1 (Back)`, front `Rotation = 90`.
 
 ## What is inside
 
